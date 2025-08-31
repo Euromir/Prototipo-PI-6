@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections; // Adicione esta linha no topo
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 
@@ -28,8 +29,6 @@ public class PlayerManager : MonoBehaviour
     {
         if (playersJoined >= playerPrefabs.Count) return;
 
-        inputManager.playerPrefab = playerPrefabs[playersJoined];
-
         PlayerInput.Instantiate(
             prefab: playerPrefabs[playersJoined],
             playerIndex: playersJoined,
@@ -53,11 +52,12 @@ public class PlayerManager : MonoBehaviour
     {
         int playerIndex = playerInput.playerIndex;
 
-        if (playerIndex < spawnPoints.Count)
+        if (playerIndex < spawnPoints.Count && spawnPoints[playerIndex] != null)
         {
-            playerInput.transform.position = spawnPoints[playerIndex].position;
-            playerInput.transform.rotation = spawnPoints[playerIndex].rotation;
+            Transform spawnPoint = spawnPoints[playerIndex];
+            StartCoroutine(TeleportPlayer(playerInput.transform, spawnPoint));
         }
+
 
         if (playerIndex < sceneCameras.Count)
         {
@@ -78,5 +78,27 @@ public class PlayerManager : MonoBehaviour
         }
 
         playersJoined++;
+    }
+
+    private IEnumerator TeleportPlayer(Transform playerTransform, Transform spawnPoint)
+    {
+        // Espera o próximo ciclo de física para garantir que o Rigidbody esteja pronto.
+        yield return new WaitForFixedUpdate();
+
+        // Pega a referência do Rigidbody no jogador
+        Rigidbody playerRb = playerTransform.GetComponent<Rigidbody>();
+        if (playerRb != null)
+        {
+            // Usa o método correto para mover um objeto com física
+            playerRb.MovePosition(spawnPoint.position);
+            playerRb.MoveRotation(spawnPoint.rotation);
+        }
+        else // Caso não encontre o Rigidbody, usa o método antigo como segurança
+        {
+            playerTransform.position = spawnPoint.position;
+            playerTransform.rotation = spawnPoint.rotation;
+        }
+
+        Debug.Log($"SUCESSO: Jogador movido via física para {spawnPoint.name} na posição {playerTransform.position}");
     }
 }
