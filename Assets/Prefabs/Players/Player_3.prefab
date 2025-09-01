@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &223689443268431246
+--- !u!1 &994589248599800531
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2449713014396602717}
-  - component: {fileID: 4516037595379213154}
+  - component: {fileID: 8811474566902280387}
+  - component: {fileID: 1575982087409160977}
   m_Layer: 0
   m_Name: PlayerCollider
   m_TagString: Untagged
@@ -17,29 +17,29 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2449713014396602717
+--- !u!4 &8811474566902280387
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 223689443268431246}
+  m_GameObject: {fileID: 994589248599800531}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.13, z: 0}
-  m_LocalScale: {x: 0.12, y: 0.3, z: 0.12}
+  m_LocalScale: {x: 0.12, y: 0.29999998, z: 0.12}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 86980460150712558}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &4516037595379213154
+--- !u!136 &1575982087409160977
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 223689443268431246}
-  m_Material: {fileID: 0}
+  m_GameObject: {fileID: 994589248599800531}
+  m_Material: {fileID: 13400000, guid: cfb09ae4a2df54b4d93c8a0944f9c833, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -51,10 +51,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 0.83162
+  m_Height: 1.7980635
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0.0077121584, y: 0.4607274, z: 0}
 --- !u!1 &4669386560049401651
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,6 +131,9 @@ GameObject:
   - component: {fileID: 8448818027122291483}
   - component: {fileID: 3301209683598491771}
   - component: {fileID: -4659826561640036516}
+  - component: {fileID: -9090756488402555566}
+  - component: {fileID: -1490487950700198373}
+  - component: {fileID: -4896123777731271130}
   m_Layer: 0
   m_Name: Player_3
   m_TagString: Player
@@ -151,7 +154,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2449713014396602717}
+  - {fileID: 8811474566902280387}
   - {fileID: 7046856541851529688}
   - {fileID: 1279106827258790768}
   - {fileID: 5250469107327082640}
@@ -277,10 +280,6 @@ MonoBehaviour:
     m_ActionId: f1ba0d36-48eb-4cd5-b651-1c94a6531f70
     m_ActionName: 'Player/OnJump[/Keyboard/space,/XInputControllerWindows/buttonSouth]'
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 641cd816-40e6-41b4-8c3d-04687c349290
-    m_ActionName: 'Player/Sprint[/Keyboard/leftShift,/XInputControllerWindows/leftStickPress]'
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: -4659826561640036516}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
@@ -312,6 +311,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: bd169eb5-b4d8-4d71-9284-47e901486e25
     m_ActionName: 'Player/OnRotateCamera[/XInputControllerWindows/leftShoulder,/XInputControllerWindows/rightShoulder]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c436db0a-c809-4943-b70a-d71b99036931
+    m_ActionName: 'Player/OnActivateAbility[/Keyboard/1]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -329,6 +332,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ab13e5653c866c4f8dde318a8631be5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-9090756488402555566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5549627086110419162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4e7bae81a0b780449c8d5f73ec8afb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactRadius: 2.5
+  _interactableLayer:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!114 &-1490487950700198373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5549627086110419162}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f475b129b2926c4f964c7a2f81ba77c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BigScale: {x: 2, y: 2, z: 2}
+  SmallScale: {x: 0.5, y: 0.5, z: 0.5}
+--- !u!114 &-4896123777731271130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5549627086110419162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9edea9a992bd366419d3fdc0b3517521, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentAbility: {fileID: 11400000, guid: 34b36beec66716f4b9f07fb30c6158c2, type: 2}
 --- !u!1001 &5717267675178715003
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -339,15 +385,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 389e312000ea3de4cb06242ea378befb, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 389e312000ea3de4cb06242ea378befb, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 389e312000ea3de4cb06242ea378befb, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 389e312000ea3de4cb06242ea378befb, type: 3}
       propertyPath: m_LocalPosition.x

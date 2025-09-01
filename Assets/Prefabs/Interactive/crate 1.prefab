@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9ea1b13110b50d2449588df4889395af, type: 3}
       propertyPath: m_Name
-      value: crate
+      value: crate 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9ea1b13110b50d2449588df4889395af, type: 3}
       propertyPath: m_Layer
@@ -65,7 +65,7 @@ PrefabInstance:
       addedObject: {fileID: 3292948737375594607}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9ea1b13110b50d2449588df4889395af, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -1354263620695384485}
+      addedObject: {fileID: -5934571991595047204}
   m_SourcePrefab: {fileID: 100100000, guid: 9ea1b13110b50d2449588df4889395af, type: 3}
 --- !u!1 &757627671669917517 stripped
 GameObject:
@@ -93,7 +93,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5000002, y: 0.5, z: 0.5000002}
   m_Center: {x: 0, y: 0.25, z: 0}
---- !u!114 &-1354263620695384485
+--- !u!114 &-5934571991595047204
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,7 +102,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 757627671669917517}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 355396bc6fc57c44b835edd97eb53042, type: 3}
+  m_Script: {fileID: 11500000, guid: fc06f9ad8e82f394090ef4bd887c8cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestructionEffectPrefab: {fileID: 0}
