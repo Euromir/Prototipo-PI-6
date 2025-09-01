@@ -17,6 +17,8 @@ public class MultiplayerCameraController : MonoBehaviour
 
     [Header("Modo de Acompanhamento (Following)")]
     [SerializeField] private Vector3 _followOffset = new Vector3(0f, 10f, -8f);
+    [Tooltip("Ângulos de inclinação da câmera para o efeito 'bird's eye'.")]
+    [SerializeField] private Vector3 _followRotationAngles = new Vector3(45f, 0f, 0f);
 
     [Header("Modo Visão Geral (Overview)")]
     [Tooltip("Offset da câmera em relação ao Ponto Central.")]
@@ -61,7 +63,11 @@ public class MultiplayerCameraController : MonoBehaviour
         switch (_currentState)
         {
             case CameraState.Following:
-                targetRotation = Quaternion.Euler(0, _currentRotationStep * 90f, 0);
+                Quaternion yawRotation = Quaternion.Euler(0, _currentRotationStep * 90f, 0);
+
+                Quaternion tiltRotation = Quaternion.Euler(_followRotationAngles);
+
+                targetRotation = yawRotation * tiltRotation;
                 break;
 
             case CameraState.Overview:

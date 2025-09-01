@@ -2,11 +2,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerJump : MonoBehaviour
+public class PlayerJump : MonoBehaviour, IPlayerID
 {
     [Header("Data")]
     [Tooltip("Referência ao ScriptableObject com os dados do jogador.")]
     [SerializeField] private PlayerData _playerData;
+
+    public int PlayerID { get => _playerData.PlayerID; }
 
     [Header("Ground Check")]
     [Tooltip("Ponto de onde a verificação de chão será feita.")]
@@ -18,19 +20,27 @@ public class PlayerJump : MonoBehaviour
 
     private Rigidbody _rb;
     private bool _isGrounded;
+    private InputDevice _assignedDevice;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
     }
 
+    public void SetDevice(InputDevice device)
+    {
+        _assignedDevice = device;
+    }
+
     private void Update()
     {
         CheckIfGrounded();
     }
-    
+
     public void OnJump(InputAction.CallbackContext context)
     {
+        if (context.control.device != _assignedDevice) return;
+
         if (context.performed && _isGrounded)
         {
             Jump();
@@ -45,7 +55,7 @@ public class PlayerJump : MonoBehaviour
     private void Jump()
     {
         _rb.AddForce(Vector3.up * _playerData.JumpForce, ForceMode.Impulse);
-        PlayerEventSystem.InvokePlayerJump(_playerData.PlayerID, _rb, _playerData.JumpForce);
+        PlayerEventSystem.InvokePlayerJump(PlayerID, _rb, _playerData.JumpForce);
     }
 
     private void OnDrawGizmosSelected()

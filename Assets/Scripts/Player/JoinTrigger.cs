@@ -24,9 +24,12 @@ public class JoinTrigger : MonoBehaviour
 
     private void OnJoinPerformed(InputAction.CallbackContext context)
     {
-        if (InputUser.FindUserPairedToDevice(context.control.device) == null)
+        InputDevice device = context.control.device;
+
+        if (!playerManager.IsDeviceJoined(device))
         {
-            playerManager.JoinPlayer(context.control.device);
+            playerManager.AddJoinedDevice(device);
+            playerManager.JoinPlayer(device);
         }
     }
 }

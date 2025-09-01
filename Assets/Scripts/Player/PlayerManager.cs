@@ -20,6 +20,8 @@ public class PlayerManager : MonoBehaviour
     private PlayerInputManager inputManager;
     private int playersJoined = 0;
 
+    private List<InputDevice> _joinedDevices = new List<InputDevice>();
+
     private void Awake()
     {
         inputManager = GetComponent<PlayerInputManager>();
@@ -50,6 +52,10 @@ public class PlayerManager : MonoBehaviour
 
     private void HandlePlayerJoined(PlayerInput playerInput)
     {
+        var devices = playerInput.devices;
+
+        playerInput.SwitchCurrentControlScheme(devices.ToArray());
+
         int playerIndex = playerInput.playerIndex;
 
         if (playerIndex < spawnPoints.Count && spawnPoints[playerIndex] != null)
@@ -57,7 +63,6 @@ public class PlayerManager : MonoBehaviour
             Transform spawnPoint = spawnPoints[playerIndex];
             StartCoroutine(TeleportPlayer(playerInput.transform, spawnPoint));
         }
-
 
         if (playerIndex < sceneCameras.Count)
         {
@@ -74,31 +79,41 @@ public class PlayerManager : MonoBehaviour
             if (movement != null)
             {
                 movement.SetCameraTransform(targetCamera.transform);
+
+                movement.SetDevice(devices[0]);
+            }
+
+            PlayerJump jump = playerInput.GetComponent<PlayerJump>();
+            if (jump != null)
+            {
+                jump.SetDevice(devices[0]);
             }
         }
-
         playersJoined++;
+    }
+
+    public void AddJoinedDevice(InputDevice device)
+    {
+        if (!_joinedDevices.Contains(device))
+        {
+            _joinedDevices.Add(device);
+        }
+    }
+
+    public bool IsDeviceJoined(InputDevice device)
+    {
+        return _joinedDevices.Contains(device);
     }
 
     private IEnumerator TeleportPlayer(Transform playerTransform, Transform spawnPoint)
     {
-        // Espera o próximo ciclo de física para garantir que o Rigidbody esteja pronto.
         yield return new WaitForFixedUpdate();
 
-        // Pega a referência do Rigidbody no jogador
         Rigidbody playerRb = playerTransform.GetComponent<Rigidbody>();
         if (playerRb != null)
         {
-            // Usa o método correto para mover um objeto com física
             playerRb.MovePosition(spawnPoint.position);
             playerRb.MoveRotation(spawnPoint.rotation);
         }
-        else // Caso não encontre o Rigidbody, usa o método antigo como segurança
-        {
-            playerTransform.position = spawnPoint.position;
-            playerTransform.rotation = spawnPoint.rotation;
-        }
-
-        Debug.Log($"SUCESSO: Jogador movido via física para {spawnPoint.name} na posição {playerTransform.position}");
     }
 }

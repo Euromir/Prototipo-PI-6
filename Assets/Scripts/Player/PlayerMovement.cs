@@ -9,10 +9,16 @@ public class PlayerMovement : MonoBehaviour, IPlayerID
     private Rigidbody _rb;
     private Vector3 _moveInput;
     private Transform _cameraTransform;
+    private InputDevice _assignedDevice;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+    }
+
+    public void SetDevice(InputDevice device)
+    {
+        _assignedDevice = device;
     }
 
     public void SetCameraTransform(Transform cameraTransform)
@@ -27,6 +33,8 @@ public class PlayerMovement : MonoBehaviour, IPlayerID
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        if (context.control.device != _assignedDevice) return;
+
         Vector2 input = context.ReadValue<Vector2>();
         input = Vector2.ClampMagnitude(input, 1.0f);
         _moveInput = new Vector3(input.x, 0, input.y);
@@ -45,7 +53,6 @@ public class PlayerMovement : MonoBehaviour, IPlayerID
             camRight.Normalize();
 
             Vector3 desiredMoveDirection = camForward * _moveInput.z + camRight * _moveInput.x;
-
             Vector3 newLinearVelocity = desiredMoveDirection * _playerData.Speed;
             _rb.linearVelocity = new Vector3(newLinearVelocity.x, _rb.linearVelocity.y, newLinearVelocity.z);
 
