@@ -1,35 +1,62 @@
 using UnityEngine;
 
-public class TeleportableObject : MonoBehaviour, ITeleportable
+public class TeleportableObject : MonoBehaviour, IHighlightable
 {
-    [Tooltip("O objeto com o qual este objeto troca de posição.")]
-    public TeleportableObject pair;
+    [Header("ConfiguraÃ§Ã£o de Troca")]
+    public TeleportableObject PairObject;
+    public Transform DestinationForPair;
 
-    public void Teleport(Vector3 destination)
+    private Renderer _renderer;
+    private Color _originalColor;
+    private bool _isHighlighted = false;
+
+    private void Awake()
     {
-        transform.position = destination;
-
-        Rigidbody rb = GetComponent<Rigidbody>();
-        if (rb != null)
+        _renderer = GetComponent<Renderer>();
+        if (_renderer != null)
         {
-            rb.linearVelocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
+            _originalColor = _renderer.material.color;
         }
     }
 
     public void SwapWithPair()
     {
-        if (pair == null)
+        Transform thisObjectDestination = PairObject.DestinationForPair;
+
+        PairObject.transform.position = DestinationForPair.position;
+        PairObject.transform.rotation = DestinationForPair.rotation;
+        PairObject.transform.localScale = DestinationForPair.localScale;
+
+        transform.position = thisObjectDestination.position;
+        transform.rotation = thisObjectDestination.rotation;
+        transform.localScale = thisObjectDestination.localScale;
+    }
+
+    public void Highlight(Color highlightColor)
+    {
+        if (_renderer != null)
         {
-            Debug.LogWarning($"{name} não tem par configurado!");
+            _renderer.material.color = highlightColor;
+        }
+    }
+
+    public void ResetColor()
+    {
+        if (!_isHighlighted)
+        {
             return;
         }
 
-        Vector3 myPos = transform.position;
-        Vector3 pairPos = pair.transform.position;
+        _isHighlighted = false;
 
-        // Troca posições
-        Teleport(pairPos);
-        pair.Teleport(myPos);
+        if (_renderer != null)
+        {
+            _renderer.material.color = _originalColor;
+        }
+
+        if (PairObject != null)
+        {
+            PairObject.ResetColor();
+        }
     }
 }

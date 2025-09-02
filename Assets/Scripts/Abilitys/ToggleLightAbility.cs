@@ -10,16 +10,10 @@ public class ToggleLightAbility : Ability
     public override void Activate(GameObject caster)
     {
         Transform lightTransform = caster.transform.Find(LightObjectName);
-        if (lightTransform == null)
-        {
-            Debug.LogError($"Objeto de luz '{LightObjectName}' não encontrado como filho de {caster.name}!");
-            return;
-        }
 
         Light lightComponent = lightTransform.GetComponent<Light>();
         if (lightComponent != null)
         {
-            // Inverte o estado atual da luz (se estiver ligada, desliga, e vice-versa)
             lightComponent.enabled = !lightComponent.enabled;
         }
     }
