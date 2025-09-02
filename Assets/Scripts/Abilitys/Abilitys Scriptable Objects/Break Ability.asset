@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a5581ada651f847b79246fb84cf8ef, type: 3}
   m_Name: Break Ability
   m_EditorClassIdentifier: 
-  Name: Break Ability
-  Icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   CooldownTime: 1
-  BreakRadius: 3
+  BreakDistance: 1
   BreakableLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 512

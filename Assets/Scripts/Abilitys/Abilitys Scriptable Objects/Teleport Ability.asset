@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf985663726c5d94bb27c6be43e9064e, type: 3}
   m_Name: Teleport Ability
   m_EditorClassIdentifier: 
-  Name: Teleport ability
-  Icon: {fileID: 0}
   CooldownTime: 1
-  MaxDistance: 10
+  MaxDistance: 2
   TeleportableLayer:
     serializedVersion: 2
     m_Bits: 256

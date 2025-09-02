@@ -255,6 +255,7 @@ GameObject:
   - component: {fileID: 6763984645979477484}
   - component: {fileID: 3069075245562689417}
   - component: {fileID: 6822414895204446897}
+  - component: {fileID: 8278462639114486414}
   m_Layer: 0
   m_Name: Player_1
   m_TagString: Player
@@ -490,7 +491,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9edea9a992bd366419d3fdc0b3517521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentAbility: {fileID: 11400000, guid: 1f4aa40d9227b6247a99c38f32edf844, type: 2}
+  CurrentAbility: {fileID: 11400000, guid: 1f4aa40d9227b6247a99c38f32edf844, type: 2}
+  RaycastDistance: 1
+  HighlightColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &3069075245562689417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,8 +522,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f475b129b2926c4f964c7a2f81ba77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BigScale: {x: 2, y: 2, z: 2}
-  SmallScale: {x: 0.5, y: 0.5, z: 0.5}
+  smallScale: {x: 0.5, y: 0.5, z: 0.5}
+  normalWeight: 2
+  smallWeight: 0
+--- !u!114 &8278462639114486414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9117106255824418975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27059ac21e6253749b4f2d060e494e90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Weight: 1
 --- !u!1001 &871642944718570640
 PrefabInstance:
   m_ObjectHideFlags: 0

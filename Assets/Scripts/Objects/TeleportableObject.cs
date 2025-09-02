@@ -3,8 +3,8 @@ using UnityEngine;
 public class TeleportableObject : MonoBehaviour, IHighlightable
 {
     [Header("Configuração de Troca")]
+    [Tooltip("O objeto parceiro para realizar a troca de posição.")]
     public TeleportableObject PairObject;
-    public Transform DestinationForPair;
 
     private Renderer _renderer;
     private Color _originalColor;
@@ -21,15 +21,13 @@ public class TeleportableObject : MonoBehaviour, IHighlightable
 
     public void SwapWithPair()
     {
-        Transform thisObjectDestination = PairObject.DestinationForPair;
+        Vector3 myOriginalPosition = transform.position;
+        transform.position = PairObject.transform.position;
+        PairObject.transform.position = myOriginalPosition;
 
-        PairObject.transform.position = DestinationForPair.position;
-        PairObject.transform.rotation = DestinationForPair.rotation;
-        PairObject.transform.localScale = DestinationForPair.localScale;
-
-        transform.position = thisObjectDestination.position;
-        transform.rotation = thisObjectDestination.rotation;
-        transform.localScale = thisObjectDestination.localScale;
+        Quaternion myOriginalRotation = transform.rotation;
+        transform.rotation = PairObject.transform.rotation;
+        PairObject.transform.rotation = myOriginalRotation;
     }
 
     public void Highlight(Color highlightColor)
@@ -37,26 +35,19 @@ public class TeleportableObject : MonoBehaviour, IHighlightable
         if (_renderer != null)
         {
             _renderer.material.color = highlightColor;
+            _isHighlighted = true;
         }
     }
 
     public void ResetColor()
     {
-        if (!_isHighlighted)
-        {
-            return;
-        }
+        if (!_isHighlighted) return;
 
         _isHighlighted = false;
 
         if (_renderer != null)
         {
             _renderer.material.color = _originalColor;
-        }
-
-        if (PairObject != null)
-        {
-            PairObject.ResetColor();
         }
     }
 }

@@ -16,7 +16,7 @@ TagManager:
   - Ground
   - Interactable
   - Teleportable
-  - Swap1
+  - Breakable
   - Swap2
   - 
   - 
