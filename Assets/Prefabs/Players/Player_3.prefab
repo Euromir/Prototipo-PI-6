@@ -134,6 +134,8 @@ GameObject:
   - component: {fileID: -9090756488402555566}
   - component: {fileID: -1490487950700198373}
   - component: {fileID: -4896123777731271130}
+  - component: {fileID: 5325166883349027075}
+  - component: {fileID: 2228593968133971509}
   m_Layer: 0
   m_Name: Player_3
   m_TagString: Player
@@ -198,10 +200,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5549627086110419162}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -360,8 +362,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f475b129b2926c4f964c7a2f81ba77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BigScale: {x: 2, y: 2, z: 2}
-  SmallScale: {x: 0.5, y: 0.5, z: 0.5}
+  smallScale: {x: 0.5, y: 0.5, z: 0.5}
+  normalWeight: 2
+  smallWeight: 0
 --- !u!114 &-4896123777731271130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,7 +377,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9edea9a992bd366419d3fdc0b3517521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentAbility: {fileID: 11400000, guid: 34b36beec66716f4b9f07fb30c6158c2, type: 2}
+  CurrentAbility: {fileID: 0}
+  RaycastDistance: 1
+  HighlightColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &5325166883349027075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5549627086110419162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27059ac21e6253749b4f2d060e494e90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerWeight
+  Weight: 1
+--- !u!114 &2228593968133971509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5549627086110419162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d05a06445623aa04c837f63a9cf22a59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerLightState
+  playerLightObject: {fileID: 0}
+  isLightOn: 0
 --- !u!1001 &5717267675178715003
 PrefabInstance:
   m_ObjectHideFlags: 0
