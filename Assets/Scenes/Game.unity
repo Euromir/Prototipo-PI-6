@@ -4894,7 +4894,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc06f9ad8e82f394090ef4bd887c8cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pair: {fileID: 0}
+  PairObject: {fileID: 0}
+  DestinationForPair: {fileID: 0}
 --- !u!4 &1119491860
 Transform:
   m_ObjectHideFlags: 0
@@ -7390,7 +7391,8 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 13400000, guid: cfb09ae4a2df54b4d93c8a0944f9c833, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -1354263620695384485, guid: 9f1eb8e6ef907754dba86fb1b8c12421, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -9988,7 +9990,8 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 13400000, guid: cfb09ae4a2df54b4d93c8a0944f9c833, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -1354263620695384485, guid: 9f1eb8e6ef907754dba86fb1b8c12421, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
