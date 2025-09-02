@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7706248085488310573
+--- !u!1 &2871540400240294552
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,42 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4646556378531974825}
-  - component: {fileID: 1805786755055803009}
-  - component: {fileID: 7224652508816627978}
-  - component: {fileID: 3404815135183565544}
-  - component: {fileID: 1061637841406842665}
-  - component: {fileID: 6660241738090560965}
-  - component: {fileID: 1655434339079243435}
-  m_Layer: 8
-  m_Name: Teleportable_Object_Opened
+  - component: {fileID: 7944171503816816555}
+  - component: {fileID: 7957317860896465024}
+  - component: {fileID: 6583775479724856645}
+  - component: {fileID: 256373115973054444}
+  - component: {fileID: 3627879726299278608}
+  - component: {fileID: 3502900462900077401}
+  m_Layer: 0
+  m_Name: Pressure_Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4646556378531974825
+--- !u!4 &7944171503816816555
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7706248085488310573}
+  m_GameObject: {fileID: 2871540400240294552}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.25, y: 0.35, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0.37, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1805786755055803009
+--- !u!114 &7957317860896465024
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7706248085488310573}
+  m_GameObject: {fileID: 2871540400240294552}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8233d90336aea43098adf6dbabd606a2, type: 3}
@@ -164,54 +163,54 @@ MonoBehaviour:
   - m_Vertices: 0b0000000e00000012000000
   m_SharedTextures: []
   m_Positions:
-  - {x: -1.175, y: -0.125, z: 0.25}
-  - {x: 1.175, y: -0.125, z: 0.25}
-  - {x: -1.175, y: 0.125, z: 0.25}
-  - {x: 1.175, y: 0.125, z: 0.25}
-  - {x: 1.175, y: -0.125, z: 0.25}
-  - {x: 1.175, y: -0.125, z: -0.25}
-  - {x: 1.175, y: 0.125, z: 0.25}
-  - {x: 1.175, y: 0.125, z: -0.25}
-  - {x: 1.175, y: -0.125, z: -0.25}
-  - {x: -1.175, y: -0.125, z: -0.25}
-  - {x: 1.175, y: 0.125, z: -0.25}
-  - {x: -1.175, y: 0.125, z: -0.25}
-  - {x: -1.175, y: -0.125, z: -0.25}
-  - {x: -1.175, y: -0.125, z: 0.25}
-  - {x: -1.175, y: 0.125, z: -0.25}
-  - {x: -1.175, y: 0.125, z: 0.25}
-  - {x: -1.175, y: 0.125, z: 0.25}
-  - {x: 1.175, y: 0.125, z: 0.25}
-  - {x: -1.175, y: 0.125, z: -0.25}
-  - {x: 1.175, y: 0.125, z: -0.25}
-  - {x: -1.175, y: -0.125, z: -0.25}
-  - {x: 1.175, y: -0.125, z: -0.25}
-  - {x: -1.175, y: -0.125, z: 0.25}
-  - {x: 1.175, y: -0.125, z: 0.25}
+  - {x: -0.5, y: -0.125, z: 0.5}
+  - {x: 0.5, y: -0.125, z: 0.5}
+  - {x: -0.5, y: 0.125, z: 0.5}
+  - {x: 0.5, y: 0.125, z: 0.5}
+  - {x: 0.5, y: -0.125, z: 0.5}
+  - {x: 0.5, y: -0.125, z: -0.5}
+  - {x: 0.5, y: 0.125, z: 0.5}
+  - {x: 0.5, y: 0.125, z: -0.5}
+  - {x: 0.5, y: -0.125, z: -0.5}
+  - {x: -0.5, y: -0.125, z: -0.5}
+  - {x: 0.5, y: 0.125, z: -0.5}
+  - {x: -0.5, y: 0.125, z: -0.5}
+  - {x: -0.5, y: -0.125, z: -0.5}
+  - {x: -0.5, y: -0.125, z: 0.5}
+  - {x: -0.5, y: 0.125, z: -0.5}
+  - {x: -0.5, y: 0.125, z: 0.5}
+  - {x: -0.5, y: 0.125, z: 0.5}
+  - {x: 0.5, y: 0.125, z: 0.5}
+  - {x: -0.5, y: 0.125, z: -0.5}
+  - {x: 0.5, y: 0.125, z: -0.5}
+  - {x: -0.5, y: -0.125, z: -0.5}
+  - {x: 0.5, y: -0.125, z: -0.5}
+  - {x: -0.5, y: -0.125, z: 0.5}
+  - {x: 0.5, y: -0.125, z: 0.5}
   m_Textures0:
-  - {x: 2.35, y: 0.75}
+  - {x: 1, y: 0.75}
   - {x: 0, y: 0.75}
-  - {x: 2.35, y: 1}
+  - {x: 1, y: 1}
   - {x: 0, y: 1}
-  - {x: 0.5, y: 0.75}
+  - {x: 1, y: 0.75}
   - {x: 0, y: 0.75}
-  - {x: 0.5, y: 1}
+  - {x: 1, y: 1}
   - {x: 0, y: 1}
-  - {x: 2.35, y: 0.75}
+  - {x: 1, y: 0.75}
   - {x: 0, y: 0.75}
-  - {x: 2.35, y: 1}
+  - {x: 1, y: 1}
   - {x: 0, y: 1}
-  - {x: 0.5, y: 0.75}
+  - {x: 1, y: 0.75}
   - {x: 0, y: 0.75}
-  - {x: 0.5, y: 1}
+  - {x: 1, y: 1}
   - {x: 0, y: 1}
   - {x: 0, y: 1}
-  - {x: 2.35, y: 1}
-  - {x: 0, y: 0.5}
-  - {x: 2.35, y: 0.5}
-  - {x: 2.35, y: 0.5}
-  - {x: 0, y: 0.5}
-  - {x: 2.35, y: 1}
+  - {x: 1, y: 1}
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: 1, y: 0}
+  - {x: 0, y: 0}
+  - {x: 1, y: 1}
   - {x: 0, y: 1}
   m_Textures2: []
   m_Textures3: []
@@ -249,42 +248,42 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 5251
+  m_VersionIndex: 2402
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!114 &7224652508816627978
+--- !u!114 &6583775479724856645
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7706248085488310573}
+  m_GameObject: {fileID: 2871540400240294552}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ca002da428252441b92f28d83c8a65f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.ProBuilder::UnityEngine.ProBuilder.Shapes.ProBuilderShape
   m_Shape:
-    rid: 7113015658907435304
+    rid: 7113015658907435331
   m_ShapeRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_UnmodifiedMeshVersion: 5251
-  m_Size: {x: 2.35, y: 0.25, z: 0.5}
+  m_UnmodifiedMeshVersion: 2402
+  m_Size: {x: 1, y: 0.25, z: 1}
   m_LocalCenter: {x: 0, y: 0, z: 0}
   references:
     version: 2
     RefIds:
-    - rid: 7113015658907435304
+    - rid: 7113015658907435331
       type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
       data: 
---- !u!23 &3404815135183565544
+--- !u!23 &256373115973054444
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7706248085488310573}
+  m_GameObject: {fileID: 2871540400240294552}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -303,7 +302,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 63b175ed533edbb4da2a4908c5b7651e, type: 2}
+  - {fileID: 2100000, guid: 0e74a904ad193b64088f186171bb1375, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -326,21 +325,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1061637841406842665
+--- !u!33 &3627879726299278608
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7706248085488310573}
+  m_GameObject: {fileID: 2871540400240294552}
   m_Mesh: {fileID: 0}
---- !u!65 &6660241738090560965
+--- !u!65 &3502900462900077401
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7706248085488310573}
+  m_GameObject: {fileID: 2871540400240294552}
   m_Material: {fileID: 13400000, guid: cfb09ae4a2df54b4d93c8a0944f9c833, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -349,23 +348,9 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.35, y: 0.25, z: 0.5}
+  m_Size: {x: 1, y: 0.25, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1655434339079243435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7706248085488310573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc06f9ad8e82f394090ef4bd887c8cc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TeleportableObject
-  PairObject: {fileID: 0}
-  DestinationPoint: {fileID: 0}

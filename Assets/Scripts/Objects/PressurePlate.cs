@@ -1,70 +1,87 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 
-[RequireComponent(typeof(PlayerWeight))]
 public class PressurePlate : MonoBehaviour
 {
     public enum ActivationAction { Deactivate, Destroy }
 
     [Header("Configuração da Plataforma")]
-    [Tooltip("O peso total necessário para ativar a plataforma.")]
     public float requiredWeight = 2f;
 
     [Header("Ação")]
-    [Tooltip("O objeto que será afetado quando a plataforma for ativada.")]
     public GameObject targetObject;
-
-    [Tooltip("A ação a ser executada no objeto alvo.")]
     public ActivationAction actionToPerform;
 
     private float _currentWeight = 0f;
     private bool _isActivated = false;
 
+    private List<PlayerResizer> _playersOnPlate = new List<PlayerResizer>();
+
     private void OnTriggerEnter(Collider other)
     {
-        PlayerWeight player = other.GetComponent<PlayerWeight>();
-        if (player != null)
+        PlayerResizer player = other.GetComponentInParent<PlayerResizer>();
+        if (player != null && !_playersOnPlate.Contains(player))
         {
-            _currentWeight += player.Weight;
-            CheckWeight();
+            _playersOnPlate.Add(player);
+            player.OnWeightOrSizeChanged += RecalculateTotalWeight;
+            RecalculateTotalWeight();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        PlayerWeight player = other.GetComponent<PlayerWeight>();
-        if (player != null)
+        PlayerResizer player = other.GetComponentInParent<PlayerResizer>();
+        if (player != null && _playersOnPlate.Contains(player))
         {
-            _currentWeight -= player.Weight;
-            CheckWeight();
+            player.OnWeightOrSizeChanged -= RecalculateTotalWeight;
+            _playersOnPlate.Remove(player);
+            RecalculateTotalWeight();
         }
+    }
+
+    private void RecalculateTotalWeight()
+    {
+        _playersOnPlate = _playersOnPlate.Where(p => p != null).ToList();
+
+        _currentWeight = 0f;
+        foreach (PlayerResizer player in _playersOnPlate)
+        {
+            _currentWeight += player.GetComponent<PlayerWeight>().Weight;
+        }
+
+        CheckWeight();
     }
 
     private void CheckWeight()
     {
-        if (!_isActivated && _currentWeight >= requiredWeight)
+        if (_currentWeight >= requiredWeight && !_isActivated)
         {
             _isActivated = true;
-            Debug.Log("Plataforma ativada!");
             PerformAction();
         }
+        else if (_currentWeight < requiredWeight && _isActivated)
+        {
+            _isActivated = false;
+            ReverseAction();
+        }
     }
-
     private void PerformAction()
     {
-        if (targetObject == null)
-        {
-            Debug.LogWarning("Nenhum objeto alvo foi definido para a plataforma de pressão.");
-            return;
-        }
-
+        if (targetObject == null) return;
         switch (actionToPerform)
         {
-            case ActivationAction.Deactivate:
-                targetObject.SetActive(false);
-                break;
-            case ActivationAction.Destroy:
-                Destroy(targetObject);
-                break;
+            case ActivationAction.Deactivate: targetObject.SetActive(false); break;
+            case ActivationAction.Destroy: Destroy(targetObject); break;
+        }
+    }
+    private void ReverseAction()
+    {
+        if (targetObject == null) return;
+        switch (actionToPerform)
+        {
+            case ActivationAction.Deactivate: targetObject.SetActive(true); break;
+            case ActivationAction.Destroy: break;
         }
     }
 }

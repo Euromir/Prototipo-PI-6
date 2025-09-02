@@ -1,12 +1,15 @@
-using UnityEngine; //só colocar esse script no personagem grande!!
+using UnityEngine;
+using System;
 
 [RequireComponent(typeof(PlayerWeight))]
 public class PlayerResizer : MonoBehaviour
 {
+    public event Action OnWeightOrSizeChanged;
+
     [Header("Configuração de Tamanho")]
     [Tooltip("A escala do personagem quando estiver pequeno.")]
     public Vector3 smallScale = new Vector3(0.5f, 0.5f, 0.5f);
-    
+
     [Header("Configuração de Peso")]
     [Tooltip("O peso do personagem quando estiver em tamanho normal (grande).")]
     public float normalWeight = 2f;
@@ -20,9 +23,7 @@ public class PlayerResizer : MonoBehaviour
     void Awake()
     {
         _normalScale = transform.localScale;
-
         _playerWeight = GetComponent<PlayerWeight>();
-
         if (_playerWeight != null)
         {
             _playerWeight.Weight = normalWeight;
@@ -43,5 +44,7 @@ public class PlayerResizer : MonoBehaviour
             transform.localScale = smallScale;
             _playerWeight.Weight = smallWeight;
         }
+
+        OnWeightOrSizeChanged?.Invoke();
     }
 }
