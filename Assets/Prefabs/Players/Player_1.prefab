@@ -497,7 +497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9edea9a992bd366419d3fdc0b3517521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentAbility: {fileID: 11400000, guid: e7333a2d9b8000b4388f75be484164be, type: 2}
+  CurrentAbility: {fileID: 11400000, guid: 1f4aa40d9227b6247a99c38f32edf844, type: 2}
   RaycastDistance: 1
   HighlightColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &3069075245562689417

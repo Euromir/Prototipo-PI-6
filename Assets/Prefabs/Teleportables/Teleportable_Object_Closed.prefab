@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4585811915574324148}
   - component: {fileID: 2385163718078434736}
   - component: {fileID: 3175364834141463875}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Teleportable_Object_Closed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,3 +368,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TeleportableObject
   PairObject: {fileID: 0}
+  DestinationPoint: {fileID: 0}

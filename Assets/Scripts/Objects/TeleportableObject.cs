@@ -3,8 +3,13 @@ using UnityEngine;
 public class TeleportableObject : MonoBehaviour, IHighlightable
 {
     [Header("Configuração de Troca")]
-    [Tooltip("O objeto parceiro para realizar a troca de posição.")]
     public TeleportableObject PairObject;
+    public Transform DestinationPoint;
+
+    private static bool _areSwapped = false;
+
+    private Vector3 _initialPosition;
+    private Quaternion _initialRotation;
 
     private Renderer _renderer;
     private Color _originalColor;
@@ -12,6 +17,9 @@ public class TeleportableObject : MonoBehaviour, IHighlightable
 
     private void Awake()
     {
+        _initialPosition = transform.position;
+        _initialRotation = transform.rotation;
+
         _renderer = GetComponent<Renderer>();
         if (_renderer != null)
         {
@@ -21,13 +29,36 @@ public class TeleportableObject : MonoBehaviour, IHighlightable
 
     public void SwapWithPair()
     {
-        Vector3 myOriginalPosition = transform.position;
-        transform.position = PairObject.transform.position;
-        PairObject.transform.position = myOriginalPosition;
+        if (this.GetInstanceID() < PairObject.GetInstanceID())
+        {
+            PerformSwapLogic();
+        }
+        else
+        {
+            PairObject.PerformSwapLogic();
+        }
+    }
 
-        Quaternion myOriginalRotation = transform.rotation;
-        transform.rotation = PairObject.transform.rotation;
-        PairObject.transform.rotation = myOriginalRotation;
+    public void PerformSwapLogic()
+    {
+        if (!_areSwapped)
+        {
+            this.transform.position = this.PairObject.DestinationPoint.position;
+            this.transform.rotation = this.PairObject.DestinationPoint.rotation;
+
+            this.PairObject.transform.position = this.DestinationPoint.position;
+            this.PairObject.transform.rotation = this.DestinationPoint.rotation;
+        }
+        else
+        {
+            this.transform.position = this._initialPosition;
+            this.transform.rotation = this._initialRotation;
+
+            this.PairObject.transform.position = this.PairObject._initialPosition;
+            this.PairObject.transform.rotation = this.PairObject._initialRotation;
+        }
+
+        _areSwapped = !_areSwapped;
     }
 
     public void Highlight(Color highlightColor)
@@ -42,9 +73,7 @@ public class TeleportableObject : MonoBehaviour, IHighlightable
     public void ResetColor()
     {
         if (!_isHighlighted) return;
-
         _isHighlighted = false;
-
         if (_renderer != null)
         {
             _renderer.material.color = _originalColor;
