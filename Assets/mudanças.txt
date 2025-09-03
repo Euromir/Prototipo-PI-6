@@ -1,0 +1,40 @@
+- sistema de respawn
+- plataforma que cai (pode usar o peso)
+- armadilha que estuna
+- o olho que mata ao pegar o player (pode ser uma especie de luz?)
+- espinho que mata ao toque (?)
+- sistema de som (?)
+
+
+Conceitos de level:
+- Level 1 "Só começando"
+Tutorial simples, explicando de maneira intuitiva o que cada personagem pode fazer e o como alguns objetos interativos funcionam
+- Level 2 "Cuidado onde pisa"
+Fase com foco em armadilhas, exige bastante cooperação, o objetivo é todos passarem os checkpoints juntos até o final da fase. 
+- Level 3 "Separados mas unidos"
+Aqui os jogadores devem seguir separados, mas suas habilidades sozinhas não são o suficiente para que eles avancem, os outros jogadores devem combinar suas habilidades para que todos avancem juntos até o final
+- Level 4 "Sons do desastre"
+uma fase mais "solta" onde os jogadores devem colaborar entre si para que cada um chegue ao seu respectivo instrumento musical, quando todos interagirem com seus instrumentos na ordem correta uma porta se abre, com o fim do nivel
+- Level 5, Final "Melhor correr"
+Fase dividida em areas, essa fase introduz um conceito de tempo, cada vez que todos os jogadores atingem um checkpoint a parte anterior do mapa "cai", se todos chegarem até o final antes do fim do tempo, os jogadores podem ver uma cutscene de final bom, se não conseguirem, de final ruim.
+
+
+Logica do checkpoint e respawn:
+Checkpoint:
+- uma fase pode ter multiplos ou apenas um checkpoint
+- os checkpoints são sequenciais, quando um jogador passa pelo checkpoint ele vai voltar no checkpoint mais recente
+- cada jogador tem uma posição de spawn diferente, as flags de ter passado por um checkpoint ou não são individuais, ou seja, um jogador pode estar no checkpoint 1 e outro estar no 0
+- quando o jogador "morre" ele deve esperar 3 segundos para voltar, sua tela fica cinza e um timer aparece no centro da tela (melhor feedback)
+Respawn:
+- o player ao morrer é desligado e volta depois do timer
+- tomar cuidado com possiveis corrotinas rodando no personagem, se uma delas for interrompida no meio da morte do jogador, pode travar todo o sistema de controles e coisas relacionadas.
+
+Plataforma que cai:
+- cai se o peso for X, se for menor ela não cai, ela volta depois de um tempo.
+
+Armadilha que estuna:
+- Trava o movimento e posição do jogador por um tempo, da pra usar o sistema de peso aqui para facilitar o desenvolvimento ou uma flag, já que o personagem grande pode ser imune a elas quando ele está grande
+
+Espinho que mata:
+- só um collider que mata o player mesmo, ele volta no checkpoint ativo
+
