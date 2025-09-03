@@ -31,6 +31,133 @@ Transform:
   m_Children: []
   m_Father: {fileID: 801814857378318474}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2677541719708990428
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8364506621378436277}
+  - component: {fileID: 7040232569827409353}
+  - component: {fileID: 2309785832339263011}
+  m_Layer: 0
+  m_Name: Point Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8364506621378436277
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2677541719708990428}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 801814857378318474}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!108 &7040232569827409353
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2677541719708990428}
+  m_Enabled: 0
+  serializedVersion: 11
+  m_Type: 2
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 2
+  m_Range: 1.3
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
+--- !u!114 &2309785832339263011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2677541719708990428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_CustomShadowLayers: 0
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!1 &5358849550507904543
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,7 +204,6 @@ GameObject:
   - component: {fileID: 1655298732280863077}
   - component: {fileID: 586039230803010705}
   - component: {fileID: 1339889103265637378}
-  - component: {fileID: 4646137030558285432}
   - component: {fileID: 2066878020961510883}
   - component: {fileID: 6192861104616288912}
   - component: {fileID: 5510298681670396824}
@@ -105,6 +231,7 @@ Transform:
   - {fileID: 4494772686510777803}
   - {fileID: 8175389657433790028}
   - {fileID: 3267045990992540963}
+  - {fileID: 8364506621378436277}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &690462463801748586
@@ -207,7 +334,19 @@ MonoBehaviour:
     m_ActionId: 351f2ccd-1f9f-44bf-9bec-d62ac5c5f408
     m_ActionName: 'Player/OnMove[/XInputControllerWindows/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1339889103265637378}
+        m_TargetAssemblyTypeName: PlayerInteract, Assembly-CSharp
+        m_MethodName: OnInteract
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 852140f2-7766-474d-8707-702459ba45f3
     m_ActionName: 'Player/Interact[/Keyboard/e,/XInputControllerWindows/buttonNorth]'
   - m_PersistentCalls:
@@ -259,7 +398,19 @@ MonoBehaviour:
     m_ActionId: bd169eb5-b4d8-4d71-9284-47e901486e25
     m_ActionName: 'Player/OnRotateCamera[/XInputControllerWindows/leftShoulder,/XInputControllerWindows/rightShoulder]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2066878020961510883}
+        m_TargetAssemblyTypeName: AbilityHolder, Assembly-CSharp
+        m_MethodName: OnActivateAbility
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: c436db0a-c809-4943-b70a-d71b99036931
     m_ActionName: 'Player/OnActivateAbility[/Keyboard/1]'
   m_NeverAutoSwitchControlSchemes: 0
@@ -291,25 +442,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4e7bae81a0b780449c8d5f73ec8afb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactRadius: 2.5
+  _interactRadius: 0.1
   _interactableLayer:
     serializedVersion: 2
-    m_Bits: 0
---- !u!114 &4646137030558285432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6516940033725569840}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f475b129b2926c4f964c7a2f81ba77c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  smallScale: {x: 0.5, y: 0.5, z: 0.5}
-  normalWeight: 2
-  smallWeight: 0
+    m_Bits: 128
 --- !u!114 &2066878020961510883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,7 +458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9edea9a992bd366419d3fdc0b3517521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentAbility: {fileID: 0}
+  CurrentAbility: {fileID: 11400000, guid: 34b36beec66716f4b9f07fb30c6158c2, type: 2}
   RaycastDistance: 1
   HighlightColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &6192861104616288912
@@ -350,7 +486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d05a06445623aa04c837f63a9cf22a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLightState
-  playerLightObject: {fileID: 0}
+  playerLightObject: {fileID: 7040232569827409353}
   isLightOn: 0
 --- !u!1 &8360563114493708990
 GameObject:

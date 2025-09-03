@@ -16,38 +16,48 @@ public class PressurePlate : MonoBehaviour
     private float _currentWeight = 0f;
     private bool _isActivated = false;
 
-    private List<PlayerResizer> _playersOnPlate = new List<PlayerResizer>();
+    private List<PlayerWeight> _weightsOnPlate = new List<PlayerWeight>();
 
     private void OnTriggerEnter(Collider other)
     {
-        PlayerResizer player = other.GetComponentInParent<PlayerResizer>();
-        if (player != null && !_playersOnPlate.Contains(player))
+        PlayerWeight playerWeight = other.GetComponentInParent<PlayerWeight>();
+        if (playerWeight != null && !_weightsOnPlate.Contains(playerWeight))
         {
-            _playersOnPlate.Add(player);
-            player.OnWeightOrSizeChanged += RecalculateTotalWeight;
+            _weightsOnPlate.Add(playerWeight);
+
+            PlayerResizer playerResizer = playerWeight.GetComponent<PlayerResizer>();
+            if (playerResizer != null)
+            {
+                playerResizer.OnWeightOrSizeChanged += RecalculateTotalWeight;
+            }
             RecalculateTotalWeight();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        PlayerResizer player = other.GetComponentInParent<PlayerResizer>();
-        if (player != null && _playersOnPlate.Contains(player))
+        PlayerWeight playerWeight = other.GetComponentInParent<PlayerWeight>();
+        if (playerWeight != null && _weightsOnPlate.Contains(playerWeight))
         {
-            player.OnWeightOrSizeChanged -= RecalculateTotalWeight;
-            _playersOnPlate.Remove(player);
+            PlayerResizer playerResizer = playerWeight.GetComponent<PlayerResizer>();
+            if (playerResizer != null)
+            {
+                playerResizer.OnWeightOrSizeChanged -= RecalculateTotalWeight;
+            }
+
+            _weightsOnPlate.Remove(playerWeight);
             RecalculateTotalWeight();
         }
     }
 
     private void RecalculateTotalWeight()
     {
-        _playersOnPlate = _playersOnPlate.Where(p => p != null).ToList();
+        _weightsOnPlate = _weightsOnPlate.Where(p => p != null).ToList();
 
         _currentWeight = 0f;
-        foreach (PlayerResizer player in _playersOnPlate)
+        foreach (PlayerWeight weightComponent in _weightsOnPlate)
         {
-            _currentWeight += player.GetComponent<PlayerWeight>().Weight;
+            _currentWeight += weightComponent.Weight;
         }
 
         CheckWeight();
@@ -66,6 +76,7 @@ public class PressurePlate : MonoBehaviour
             ReverseAction();
         }
     }
+
     private void PerformAction()
     {
         if (targetObject == null) return;
@@ -75,6 +86,7 @@ public class PressurePlate : MonoBehaviour
             case ActivationAction.Destroy: Destroy(targetObject); break;
         }
     }
+
     private void ReverseAction()
     {
         if (targetObject == null) return;

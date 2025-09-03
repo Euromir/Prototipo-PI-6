@@ -48,7 +48,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6917120608097676197
 Transform:
   m_ObjectHideFlags: 0
@@ -58,7 +58,7 @@ Transform:
   m_GameObject: {fileID: 6944772604893569773}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.237, z: 0}
+  m_LocalPosition: {x: 0, y: 0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -75,8 +75,8 @@ Light:
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 6
-  m_Range: 1.5
+  m_Intensity: 2
+  m_Range: 1.3
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -260,9 +260,7 @@ GameObject:
   - component: {fileID: 869446348975909410}
   - component: {fileID: 6763984645979477484}
   - component: {fileID: 3069075245562689417}
-  - component: {fileID: 6822414895204446897}
   - component: {fileID: 8278462639114486414}
-  - component: {fileID: 6867843177833134130}
   m_Layer: 0
   m_Name: Player_1
   m_TagString: Player
@@ -498,7 +496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9edea9a992bd366419d3fdc0b3517521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentAbility: {fileID: 11400000, guid: 34b36beec66716f4b9f07fb30c6158c2, type: 2}
+  CurrentAbility: {fileID: 11400000, guid: e7333a2d9b8000b4388f75be484164be, type: 2}
   RaycastDistance: 1
   HighlightColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &3069075245562689417
@@ -517,21 +515,6 @@ MonoBehaviour:
   _interactableLayer:
     serializedVersion: 2
     m_Bits: 128
---- !u!114 &6822414895204446897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9117106255824418975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f475b129b2926c4f964c7a2f81ba77c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  smallScale: {x: 0.5, y: 0.5, z: 0.5}
-  normalWeight: 2
-  smallWeight: 0
 --- !u!114 &8278462639114486414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -545,20 +528,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Weight: 1
---- !u!114 &6867843177833134130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9117106255824418975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d05a06445623aa04c837f63a9cf22a59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerLightState
-  playerLightObject: {fileID: 899550946795360121}
-  isLightOn: 0
 --- !u!1001 &871642944718570640
 PrefabInstance:
   m_ObjectHideFlags: 0

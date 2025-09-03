@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "InputSystem_Actions",
     "maps": [
         {
@@ -350,7 +351,7 @@
                 {
                     "name": "",
                     "id": "1b332a2f-bc3f-48ab-8986-5306f1fe9a27",
-                    "path": "<Gamepad>/select",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
