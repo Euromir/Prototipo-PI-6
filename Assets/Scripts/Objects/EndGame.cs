@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class EndGame : MonoBehaviour
 {
-    public string sceneToLoad = "Main_Menu";
-    public int requiredPlayerCount = 4;
+    public string SceneToLoad = "Main_Menu";
+    public int RequiredPlayerCount = 4;
 
     private List<GameObject> playersInTrigger = new List<GameObject>();
 
@@ -38,9 +38,9 @@ public class EndGame : MonoBehaviour
 
     private void CheckPlayerCount()
     {
-        if (playersInTrigger.Count == requiredPlayerCount)
+        if (playersInTrigger.Count == RequiredPlayerCount)
         {
-            SceneManager.LoadScene(sceneToLoad);
+            SceneManager.LoadScene(SceneToLoad);
         }
     }
 }

@@ -3,11 +3,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerInteract : MonoBehaviour
 {
-    [Header("Configurações de Interação")]
-    [Tooltip("O raio da esfera de detecção a partir da posição do jogador.")]
+    [Header("Configuraï¿½ï¿½es de Interaï¿½ï¿½o")]
+    [Tooltip("O raio da esfera de detecï¿½ï¿½o a partir da posiï¿½ï¿½o do jogador.")]
     [SerializeField] private float _interactRadius = 2.5f;
-    [Tooltip("Define quais camadas (Layers) contêm objetos interativos.")]
+    [Tooltip("Define quais camadas (Layers) contï¿½m objetos interativos.")]
     [SerializeField] private LayerMask _interactableLayer;
+
+    private int _playerID;
 
     public void OnInteract(InputAction.CallbackContext context)
     {
@@ -17,18 +19,16 @@ public class PlayerInteract : MonoBehaviour
 
             if (colliders.Length > 0)
             {
-                IInteractable interactable = colliders[0].GetComponent<IInteractable>();
+                Collider targetCollider = colliders[0];
+                IInteractable interactable = targetCollider.GetComponent<IInteractable>();
                 if (interactable != null)
                 {
                     interactable.Interact(this.gameObject);
+
+                    Vector3 interactPosition = targetCollider.transform.position;
+                    PlayerEventSystem.InvokePlayerInteracted(_playerID, interactPosition);
                 }
             }
         }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, _interactRadius);
     }
 }
