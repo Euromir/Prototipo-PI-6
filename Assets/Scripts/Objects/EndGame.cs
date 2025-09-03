@@ -4,28 +4,39 @@ using System.Collections.Generic;
 
 public class EndGame : MonoBehaviour
 {
-    public string sceneToLoad;
-    private int requiredPlayerCount = 4;
+    public string sceneToLoad = "Main_Menu";
+    public int requiredPlayerCount = 4;
+
     private List<GameObject> playersInTrigger = new List<GameObject>();
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !playersInTrigger.Contains(other.gameObject))
+        Rigidbody playerRigidbody = other.attachedRigidbody;
+
+        if (playerRigidbody != null && playerRigidbody.CompareTag("Player"))
         {
-            playersInTrigger.Add(other.gameObject);
-            CheckPlayerCountAndLoadScene();
+            GameObject playerObject = playerRigidbody.gameObject;
+
+            if (!playersInTrigger.Contains(playerObject))
+            {
+                playersInTrigger.Add(playerObject);
+                CheckPlayerCount();
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        Rigidbody playerRigidbody = other.attachedRigidbody;
+
+        if (playerRigidbody != null && playerRigidbody.CompareTag("Player"))
         {
-            playersInTrigger.Remove(other.gameObject);
+            GameObject playerObject = playerRigidbody.gameObject;
+            playersInTrigger.Remove(playerObject);
         }
     }
 
-    private void CheckPlayerCountAndLoadScene()
+    private void CheckPlayerCount()
     {
         if (playersInTrigger.Count == requiredPlayerCount)
         {
