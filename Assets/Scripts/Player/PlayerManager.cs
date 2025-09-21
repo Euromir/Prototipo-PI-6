@@ -107,13 +107,12 @@ public class PlayerManager : MonoBehaviour
 
     private IEnumerator TeleportPlayer(Transform playerTransform, Transform spawnPoint)
     {
-        yield return new WaitForFixedUpdate();
-
         Rigidbody playerRb = playerTransform.GetComponent<Rigidbody>();
         if (playerRb != null)
         {
             playerRb.MovePosition(spawnPoint.position);
             playerRb.MoveRotation(spawnPoint.rotation);
         }
+        yield return null;
     }
 }

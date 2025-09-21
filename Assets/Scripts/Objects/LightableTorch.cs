@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 // Renomeei para LightableTorch para bater com o seu código.
@@ -13,16 +14,19 @@ public class LightableTorch : MonoBehaviour
     [Tooltip("O objeto com a luz/fogo da tocha, que será ativado/desativado.")]
     public GameObject luzDaTocha;
 
-    private bool foiAcesa = false;
+    private MultiStepsPuzzle LockedDoor;
+
+    public bool foiAcesa { get; private set; }
 
     private void Start()
     {
+        LockedDoor = GetComponentInParent<MultiStepsPuzzle>();
         Apagar();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.root.CompareTag("Player"))
+        if (other.transform.root.CompareTag("Player") && gerenciador != null)
         {
             PlayerLightState playerLight = other.transform.root.GetComponent<PlayerLightState>();
 
@@ -31,17 +35,30 @@ public class LightableTorch : MonoBehaviour
                 gerenciador.RegistrarTocha(this);
             }
         }
+
+        if (other.transform.root.CompareTag("Player") && gerenciador == null)
+        {
+            Acender();
+        }
     }
 
     public void Acender()
     {
         luzDaTocha.SetActive(true);
         foiAcesa = true;
+        if (LockedDoor != null)
+        {
+            LockedDoor.CheckTheDoor.Invoke();
+        }
     }
 
     public void Apagar()
     {
         luzDaTocha.SetActive(false);
         foiAcesa = false;
+        if (LockedDoor != null)
+        {
+            LockedDoor.CheckTheDoor.Invoke();
+        }
     }
 }

@@ -4,6 +4,7 @@ public class PlayerLightState : MonoBehaviour
 {
     [Tooltip("A luz que será ligada e desligada no jogador.")]
     public Light playerLightObject;
+    public Collider lightCollider;
 
     public bool isLightOn = true;
 
@@ -22,6 +23,7 @@ public class PlayerLightState : MonoBehaviour
         if (playerLightObject != null)
         {
             playerLightObject.enabled = isLightOn;
+            lightCollider.enabled = isLightOn;
         }
     }
 }

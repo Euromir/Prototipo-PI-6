@@ -8,15 +8,23 @@ public class PressurePlate : MonoBehaviour
 
     [Header("Configuração da Plataforma")]
     public float requiredWeight = 2f;
+    public bool isTrap = false;
 
     [Header("Ação")]
     public GameObject targetObject;
     public ActivationAction actionToPerform;
 
     private float _currentWeight = 0f;
-    private bool _isActivated = false;
+    public bool _isActivated = false;
+    private MultiStepsPuzzle LockedDoor;
+    private bool Kill;
 
     private List<PlayerWeight> _weightsOnPlate = new List<PlayerWeight>();
+
+    private void Start()
+    {
+        LockedDoor = GetComponentInParent<MultiStepsPuzzle>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -50,6 +58,14 @@ public class PressurePlate : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.transform.root.CompareTag("Player") && Kill)
+        {
+            other.transform.root.gameObject.SetActive(false);
+        }
+    }
+
     private void RecalculateTotalWeight()
     {
         _weightsOnPlate = _weightsOnPlate.Where(p => p != null).ToList();
@@ -65,15 +81,29 @@ public class PressurePlate : MonoBehaviour
 
     private void CheckWeight()
     {
-        if (_currentWeight >= requiredWeight && !_isActivated)
+        if (_currentWeight >= requiredWeight && !_isActivated && !isTrap)
         {
             _isActivated = true;
             PerformAction();
         }
-        else if (_currentWeight < requiredWeight && _isActivated)
+        else if (_currentWeight < requiredWeight && _isActivated && !isTrap)
         {
             _isActivated = false;
             ReverseAction();
+        }
+
+        if (_currentWeight >= requiredWeight && isTrap)
+        {
+            Kill = true;
+        }
+        else if (_currentWeight >= requiredWeight && isTrap)
+        {
+            Kill = false;
+        }
+
+        if (LockedDoor != null)
+        {
+            LockedDoor.CheckTheDoor.Invoke();
         }
     }
 
