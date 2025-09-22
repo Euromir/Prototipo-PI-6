@@ -14,7 +14,7 @@ public class PlayerResizer : MonoBehaviour
     [Tooltip("O peso do personagem quando estiver em tamanho normal (grande).")]
     public float normalWeight = 2f;
     [Tooltip("O peso do personagem quando estiver pequeno.")]
-    public float smallWeight = 0f;
+    public float smallWeight = 0.5f;
 
     private Vector3 _normalScale;
     private PlayerWeight _playerWeight;

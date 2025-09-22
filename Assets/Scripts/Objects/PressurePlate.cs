@@ -1,30 +1,28 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 public class PressurePlate : MonoBehaviour
 {
+    public event Action<PressurePlate> OnStateChanged;
+
     public enum ActivationAction { Deactivate, Destroy }
 
     [Header("Configuração da Plataforma")]
     public float requiredWeight = 2f;
     public bool isTrap = false;
 
-    [Header("Ação")]
+    [Header("Ação Individual")]
+    [Tooltip("Este objeto será afetado apenas por esta placa. Caso seja necessarias multiplas interações, use o multi plate puzzle")]
     public GameObject targetObject;
     public ActivationAction actionToPerform;
 
     private float _currentWeight = 0f;
-    public bool _isActivated = false;
-    private MultiStepsPuzzle LockedDoor;
+    public bool _isActivated { get; private set; } = false;
     private bool Kill;
 
     private List<PlayerWeight> _weightsOnPlate = new List<PlayerWeight>();
-
-    private void Start()
-    {
-        LockedDoor = GetComponentInParent<MultiStepsPuzzle>();
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -81,12 +79,14 @@ public class PressurePlate : MonoBehaviour
 
     private void CheckWeight()
     {
-        if (_currentWeight >= requiredWeight && !_isActivated && !isTrap)
+        bool previousState = _isActivated;
+
+        if (_currentWeight >= requiredWeight && !isTrap)
         {
             _isActivated = true;
             PerformAction();
         }
-        else if (_currentWeight < requiredWeight && _isActivated && !isTrap)
+        else if (_currentWeight < requiredWeight && !isTrap)
         {
             _isActivated = false;
             ReverseAction();
@@ -96,14 +96,14 @@ public class PressurePlate : MonoBehaviour
         {
             Kill = true;
         }
-        else if (_currentWeight >= requiredWeight && isTrap)
+        else if (_currentWeight < requiredWeight && isTrap)
         {
             Kill = false;
         }
 
-        if (LockedDoor != null)
+        if (_isActivated != previousState)
         {
-            LockedDoor.CheckTheDoor.Invoke();
+            OnStateChanged?.Invoke(this);
         }
     }
 

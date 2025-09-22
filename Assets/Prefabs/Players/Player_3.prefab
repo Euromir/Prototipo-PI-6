@@ -262,6 +262,7 @@ GameObject:
   - component: {fileID: -4896123777731271130}
   - component: {fileID: 5325166883349027075}
   - component: {fileID: -419708901215495978}
+  - component: {fileID: -2964767462819737214}
   m_Layer: 0
   m_Name: Player_3
   m_TagString: Player
@@ -544,6 +545,20 @@ MonoBehaviour:
   smallScale: {x: 0.5, y: 0.5, z: 0.5}
   normalWeight: 2
   smallWeight: 0
+--- !u!114 &-2964767462819737214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5549627086110419162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04910e15f0d1637448d52db46ddab94b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerKey
+  temChave: 0
+  chaveNaCabeca: {fileID: 3098714903792397867, guid: 4032445541342ec45bda9d07d8947bb5, type: 3}
 --- !u!1001 &5717267675178715003
 PrefabInstance:
   m_ObjectHideFlags: 0

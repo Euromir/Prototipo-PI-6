@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: 6763984645979477484}
   - component: {fileID: 3069075245562689417}
   - component: {fileID: 8278462639114486414}
+  - component: {fileID: 569685648052388081}
   m_Layer: 0
   m_Name: Player_1
   m_TagString: Player
@@ -528,6 +529,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Weight: 1
+--- !u!114 &569685648052388081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9117106255824418975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04910e15f0d1637448d52db46ddab94b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerKey
+  temChave: 0
+  chaveNaCabeca: {fileID: 3098714903792397867, guid: 4032445541342ec45bda9d07d8947bb5, type: 3}
 --- !u!1001 &871642944718570640
 PrefabInstance:
   m_ObjectHideFlags: 0

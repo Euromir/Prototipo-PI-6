@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: -5950629793900082932}
   - component: {fileID: 6040695161303481023}
   - component: {fileID: 1502662719325041534}
+  - component: {fileID: -670373608379900014}
   m_Layer: 0
   m_Name: Player_2
   m_TagString: Player
@@ -315,6 +316,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWeight
   Weight: 1
+--- !u!114 &-670373608379900014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633684750965210129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04910e15f0d1637448d52db46ddab94b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerKey
+  temChave: 0
+  chaveNaCabeca: {fileID: 3098714903792397867, guid: 4032445541342ec45bda9d07d8947bb5, type: 3}
 --- !u!1 &1833980101769122031
 GameObject:
   m_ObjectHideFlags: 0
