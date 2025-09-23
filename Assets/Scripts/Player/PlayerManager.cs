@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collections; // Adicione esta linha no topo
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 

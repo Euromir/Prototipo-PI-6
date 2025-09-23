@@ -1,7 +1,5 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
-// Renomeei para LightableTorch para bater com o seu código.
 public class LightableTorch : MonoBehaviour
 {
     [Header("Configuração da Tocha")]
@@ -9,17 +7,22 @@ public class LightableTorch : MonoBehaviour
     public int ID;
 
     [Tooltip("Referência para o Gerenciador do Puzzle.")]
-    public LightPuzzleManager gerenciador; // Nome do seu gerenciador
+    public LightPuzzleManager gerenciador;
 
-    [Tooltip("O objeto com a luz/fogo da tocha, que será ativado/desativado.")]
-    public GameObject luzDaTocha;
-
+    private GameObject luzDaTocha;
     private MultiStepsPuzzle LockedDoor;
-
     public bool foiAcesa { get; private set; }
 
     private void Start()
     {
+        Light luzComponent = GetComponentInChildren<Light>(true);
+
+        if (luzComponent != null)
+        {
+            luzDaTocha = luzComponent.gameObject;
+        }
+
+
         LockedDoor = GetComponentInParent<MultiStepsPuzzle>();
         Apagar();
     }
@@ -29,7 +32,6 @@ public class LightableTorch : MonoBehaviour
         if (other.transform.root.CompareTag("Player") && gerenciador != null)
         {
             PlayerLightState playerLight = other.transform.root.GetComponent<PlayerLightState>();
-
             if (playerLight != null && playerLight.isLightOn && !foiAcesa)
             {
                 gerenciador.RegistrarTocha(this);
@@ -44,7 +46,7 @@ public class LightableTorch : MonoBehaviour
 
     public void Acender()
     {
-        luzDaTocha.SetActive(true);
+        if (luzDaTocha != null) luzDaTocha.SetActive(true);
         foiAcesa = true;
         if (LockedDoor != null)
         {
@@ -54,7 +56,7 @@ public class LightableTorch : MonoBehaviour
 
     public void Apagar()
     {
-        luzDaTocha.SetActive(false);
+        if (luzDaTocha != null) luzDaTocha.SetActive(false);
         foiAcesa = false;
         if (LockedDoor != null)
         {

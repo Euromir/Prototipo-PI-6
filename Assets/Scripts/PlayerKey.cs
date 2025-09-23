@@ -26,4 +26,14 @@ public class PlayerKey : MonoBehaviour
             chaveNaCabeca.SetActive(true);
         }
     }
+
+    public void UsarChave()
+    {
+        temChave = false;
+
+        if (chaveNaCabeca != null)
+        {
+            chaveNaCabeca.SetActive(false);
+        }
+    }
 }
