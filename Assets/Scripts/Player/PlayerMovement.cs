@@ -11,9 +11,12 @@ public class PlayerMovement : MonoBehaviour, IPlayerID
     private Transform _cameraTransform;
     private InputDevice _assignedDevice;
 
+    private Animator _animator;
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
     public void SetDevice(InputDevice device)
@@ -35,15 +38,23 @@ public class PlayerMovement : MonoBehaviour, IPlayerID
     {
         if (context.control.device != _assignedDevice) return;
 
-        Vector2 input = context.ReadValue<Vector2>();
-        input = Vector2.ClampMagnitude(input, 1.0f);
-        _moveInput = new Vector3(input.x, 0, input.y);
+        if (context.performed)
+        {
+            Vector2 input = context.ReadValue<Vector2>();
+            _moveInput = new Vector3(input.x, 0, input.y);
+        }
+        else if (context.canceled)
+        {
+            _moveInput = Vector3.zero;
+        }
     }
 
     private void MovePlayer()
     {
         if (_moveInput.magnitude >= 0.1f && _cameraTransform != null)
         {
+            _animator.SetBool("isWalking", true);
+
             Vector3 camForward = _cameraTransform.forward;
             Vector3 camRight = _cameraTransform.right;
 
@@ -63,6 +74,8 @@ public class PlayerMovement : MonoBehaviour, IPlayerID
         }
         else
         {
+            _animator.SetBool("isWalking", false);
+
             _rb.linearVelocity = new Vector3(0, _rb.linearVelocity.y, 0);
         }
     }

@@ -10,12 +10,16 @@ public class PlayerManager : MonoBehaviour
     [Tooltip("Arraste seus 4 PREFABS de jogador únicos aqui, na ordem (P1, P2, P3, P4).")]
     [SerializeField] private List<GameObject> playerPrefabs;
 
-    [Tooltip("A lista de locais onde os jogadores irão aparecer.")]
-    [SerializeField] private List<Transform> spawnPoints;
+    [Tooltip("A lista de locais onde os jogadores irão aparecer INICIALMENTE.")]
+    [SerializeField] private List<Transform> initialSpawnPoints;
 
     [Header("Configuração das Câmeras")]
     [Tooltip("Arraste as 4 CÂMERAS da sua cena para esta lista, na ordem.")]
     [SerializeField] private List<MultiplayerCameraController> sceneCameras;
+
+    private Checkpoint currentCheckpoint;
+
+    private List<PlayerInput> players = new List<PlayerInput>();
 
     private PlayerInputManager inputManager;
     private int playersJoined = 0;
@@ -52,17 +56,14 @@ public class PlayerManager : MonoBehaviour
 
     private void HandlePlayerJoined(PlayerInput playerInput)
     {
-        var devices = playerInput.devices;
+        players.Add(playerInput);
 
+        var devices = playerInput.devices;
         playerInput.SwitchCurrentControlScheme(devices.ToArray());
 
         int playerIndex = playerInput.playerIndex;
 
-        if (playerIndex < spawnPoints.Count && spawnPoints[playerIndex] != null)
-        {
-            Transform spawnPoint = spawnPoints[playerIndex];
-            StartCoroutine(TeleportPlayer(playerInput.transform, spawnPoint));
-        }
+        RespawnPlayer(playerInput);
 
         if (playerIndex < sceneCameras.Count)
         {
@@ -79,7 +80,6 @@ public class PlayerManager : MonoBehaviour
             if (movement != null)
             {
                 movement.SetCameraTransform(targetCamera.transform);
-
                 movement.SetDevice(devices[0]);
             }
 
@@ -90,6 +90,31 @@ public class PlayerManager : MonoBehaviour
             }
         }
         playersJoined++;
+    }
+
+    public void SetCurrentCheckpoint(Checkpoint newCheckpoint)
+    {
+        currentCheckpoint = newCheckpoint;
+    }
+
+    public void RespawnPlayer(PlayerInput playerInput)
+    {
+        int playerIndex = playerInput.playerIndex;
+        Transform spawnPoint = null;
+
+        if (currentCheckpoint != null)
+        {
+            spawnPoint = currentCheckpoint.GetRespawnPoint(playerIndex);
+        }
+        else if (playerIndex < initialSpawnPoints.Count && initialSpawnPoints[playerIndex] != null)
+        {
+            spawnPoint = initialSpawnPoints[playerIndex];
+        }
+
+        if (spawnPoint != null)
+        {
+            StartCoroutine(TeleportPlayer(playerInput.transform, spawnPoint));
+        }
     }
 
     public void AddJoinedDevice(InputDevice device)
@@ -110,9 +135,18 @@ public class PlayerManager : MonoBehaviour
         Rigidbody playerRb = playerTransform.GetComponent<Rigidbody>();
         if (playerRb != null)
         {
-            playerRb.MovePosition(spawnPoint.position);
-            playerRb.MoveRotation(spawnPoint.rotation);
+            playerRb.isKinematic = true;
         }
+
+        playerTransform.position = spawnPoint.position;
+        playerTransform.rotation = spawnPoint.rotation;
+
         yield return null;
+
+        if (playerRb != null)
+        {
+            playerRb.isKinematic = false;
+            playerRb.linearVelocity = Vector3.zero;
+        }
     }
 }

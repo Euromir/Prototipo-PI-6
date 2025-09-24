@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using UnityEngine.InputSystem; // Adicione esta linha
 
 public class PressurePlate : MonoBehaviour
 {
@@ -20,9 +21,17 @@ public class PressurePlate : MonoBehaviour
 
     private float _currentWeight = 0f;
     public bool _isActivated { get; private set; } = false;
-    private bool Kill;
 
     private List<PlayerWeight> _weightsOnPlate = new List<PlayerWeight>();
+
+    // Referência direta ao PlayerManager
+    private PlayerManager _playerManager;
+
+    private void Awake()
+    {
+        // Encontra o PlayerManager na cena quando o jogo começa
+        _playerManager = FindObjectOfType<PlayerManager>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -56,14 +65,6 @@ public class PressurePlate : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.transform.root.CompareTag("Player") && Kill)
-        {
-            other.transform.root.gameObject.SetActive(false);
-        }
-    }
-
     private void RecalculateTotalWeight()
     {
         _weightsOnPlate = _weightsOnPlate.Where(p => p != null).ToList();
@@ -81,24 +82,33 @@ public class PressurePlate : MonoBehaviour
     {
         bool previousState = _isActivated;
 
-        if (_currentWeight >= requiredWeight && !isTrap)
+        // Lógica da armadilha modificada
+        if (_currentWeight >= requiredWeight && isTrap)
+        {
+            if (_playerManager != null)
+            {
+                // Para cada jogador na plataforma, pegue seu PlayerInput e mande para o PlayerManager
+                foreach (PlayerWeight playerOnPlate in _weightsOnPlate)
+                {
+                    PlayerInput playerInput = playerOnPlate.GetComponentInParent<PlayerInput>();
+                    if (playerInput != null)
+                    {
+                        _playerManager.RespawnPlayer(playerInput);
+                    }
+                }
+            }
+            return;
+        }
+
+        if (_currentWeight >= requiredWeight)
         {
             _isActivated = true;
             PerformAction();
         }
-        else if (_currentWeight < requiredWeight && !isTrap)
+        else
         {
             _isActivated = false;
             ReverseAction();
-        }
-
-        if (_currentWeight >= requiredWeight && isTrap)
-        {
-            Kill = true;
-        }
-        else if (_currentWeight < requiredWeight && isTrap)
-        {
-            Kill = false;
         }
 
         if (_isActivated != previousState)

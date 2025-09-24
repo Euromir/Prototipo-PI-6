@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class LightableTorch : MonoBehaviour
 {
@@ -9,21 +10,18 @@ public class LightableTorch : MonoBehaviour
     [Tooltip("Referência para o Gerenciador do Puzzle.")]
     public LightPuzzleManager gerenciador;
 
+    public event Action<object> OnStateChanged;
+
     private GameObject luzDaTocha;
-    private MultiStepsPuzzle LockedDoor;
     public bool foiAcesa { get; private set; }
 
     private void Start()
     {
         Light luzComponent = GetComponentInChildren<Light>(true);
-
         if (luzComponent != null)
         {
             luzDaTocha = luzComponent.gameObject;
         }
-
-
-        LockedDoor = GetComponentInParent<MultiStepsPuzzle>();
         Apagar();
     }
 
@@ -46,21 +44,21 @@ public class LightableTorch : MonoBehaviour
 
     public void Acender()
     {
+        if (foiAcesa) return;
+
         if (luzDaTocha != null) luzDaTocha.SetActive(true);
         foiAcesa = true;
-        if (LockedDoor != null)
-        {
-            LockedDoor.CheckTheDoor.Invoke();
-        }
+
+        OnStateChanged?.Invoke(this);
     }
 
     public void Apagar()
     {
+        if (!foiAcesa) return;
+
         if (luzDaTocha != null) luzDaTocha.SetActive(false);
         foiAcesa = false;
-        if (LockedDoor != null)
-        {
-            LockedDoor.CheckTheDoor.Invoke();
-        }
+
+        OnStateChanged?.Invoke(this);
     }
 }
