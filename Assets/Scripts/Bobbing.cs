@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EfeitoFlutuacao : MonoBehaviour
+public class Bobbing : MonoBehaviour
 {
     [Header("Configurações de Flutuação")]
     [Tooltip("A altura máxima que o objeto alcançará para cima e para baixo a partir do ponto inicial.")]

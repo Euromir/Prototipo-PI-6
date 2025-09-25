@@ -2,6 +2,13 @@ using UnityEngine;
 
 public class BreakableObject : MonoBehaviour, IBreakable, IHighlightable
 {
+    [Header("Configuração de Quebra")]
+    [Tooltip("Marque esta caixa se este objeto for uma ponte.")]
+    public bool isBridge = false;
+
+    [Tooltip("O objeto que será ATIVADO quando esta ponte for quebrada.")]
+    public GameObject objectToActivateOnBreak;
+
     private Renderer _renderer;
     private Color _originalColor;
 
@@ -16,6 +23,11 @@ public class BreakableObject : MonoBehaviour, IBreakable, IHighlightable
 
     public void Break()
     {
+        if (isBridge && objectToActivateOnBreak != null)
+        {
+            objectToActivateOnBreak.SetActive(true);
+        }
+
         Destroy(gameObject);
     }
 

@@ -1,7 +1,6 @@
 using UnityEngine;
-using System.Collections;
 using TMPro;
-using UnityEngine.SceneManager;
+using UnityEngine.SceneManagement;
 
 public class TimerController : MonoBehaviour
 {
@@ -26,7 +25,7 @@ public class TimerController : MonoBehaviour
         else
         {
             TimeIsOver();
-        } 
+        }
     }
 
     private void TimeIsOver()
@@ -37,9 +36,10 @@ public class TimerController : MonoBehaviour
     private void TimerConverter()
     {
         {
-        int minutes = Mathf.FloorToInt(m_currentTime / 60);
-        int seconds = Mathf.FloorToInt(m_currentTime % 60);
+            int minutes = Mathf.FloorToInt(m_currentTime / 60);
+            int seconds = Mathf.FloorToInt(m_currentTime % 60);
 
-        m_currentTimeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            m_currentTimeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
     }
 }

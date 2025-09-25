@@ -46,6 +46,8 @@ public class MultiPlatePuzzle : MonoBehaviour
 
     private void CheckPuzzleState(PressurePlate plate)
     {
+        if (_isPuzzleSolved) return;
+
         int activatedPlatesCount = puzzlePlates.Count(p => p != null && p._isActivated);
 
         if (puzzlePlates.Count == 0) return;
@@ -54,7 +56,6 @@ public class MultiPlatePuzzle : MonoBehaviour
         {
             if (!_isPuzzleSolved)
             {
-                Debug.Log("Puzzle Resolvido!");
                 _isPuzzleSolved = true;
                 ApplyPuzzleState(true);
             }
@@ -63,7 +64,6 @@ public class MultiPlatePuzzle : MonoBehaviour
         {
             if (_isPuzzleSolved)
             {
-                Debug.Log("Puzzle Resetado!");
                 _isPuzzleSolved = false;
                 ApplyPuzzleState(false);
             }
