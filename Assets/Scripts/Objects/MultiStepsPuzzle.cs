@@ -3,13 +3,21 @@ using UnityEngine;
 
 public class MultiStepsPuzzle : MonoBehaviour
 {
-    [SerializeField] private GameObject Door;
+    [Header("Objetos Controlados pelo Puzzle")]
+    [Tooltip("OPCIONAL: Arraste aqui o objeto que será DESATIVADO ao resolver o puzzle (ex: uma porta que se abre).")]
+    [SerializeField] private GameObject objetoParaDesativar;
 
+    [Tooltip("OPCIONAL: Arraste aqui o objeto que será ATIVADO ao resolver o puzzle (ex: uma ponte que surge).")]
+    [SerializeField] private GameObject objetoParaAtivar;
+
+
+    [Header("Condições do Puzzle")]
     public List<PressurePlate> Plates = new List<PressurePlate>();
     public List<LightableTorch> Torches = new List<LightableTorch>();
 
     private void OnEnable()
     {
+        // O restante do código de OnEnable e OnDisable permanece o mesmo
         foreach (PressurePlate plate in Plates)
         {
             if (plate != null)
@@ -25,7 +33,6 @@ public class MultiStepsPuzzle : MonoBehaviour
                 torch.OnStateChanged += HandlePuzzleStateChanged;
             }
         }
-
         CheckPuzzleConditions();
     }
 
@@ -55,24 +62,53 @@ public class MultiStepsPuzzle : MonoBehaviour
 
     public void CheckPuzzleConditions()
     {
+        // Primeiro, verifica se todas as condições foram atendidas
+        bool puzzleResolvido = true;
         foreach (PressurePlate plate in Plates)
         {
             if (plate != null && !plate._isActivated)
             {
-                Door.SetActive(true);
-                return;
+                puzzleResolvido = false;
+                break; // Se uma placa falhar, não precisa checar o resto
             }
         }
 
-        foreach (LightableTorch torch in Torches)
+        if (puzzleResolvido) // Só checa as tochas se as placas estiverem OK
         {
-            if (torch != null && !torch.foiAcesa)
+            foreach (LightableTorch torch in Torches)
             {
-                Door.SetActive(true);
-                return;
+                if (torch != null && !torch.foiAcesa)
+                {
+                    puzzleResolvido = false;
+                    break; // Se uma tocha falhar, não precisa checar o resto
+                }
             }
         }
 
-        Door.SetActive(false);
+        // Agora, atualiza os GameObjects com base no estado do puzzle
+        if (puzzleResolvido)
+        {
+            // O PUZZLE FOI RESOLVIDO
+            if (objetoParaDesativar != null)
+            {
+                objetoParaDesativar.SetActive(false);
+            }
+            if (objetoParaAtivar != null)
+            {
+                objetoParaAtivar.SetActive(true);
+            }
+        }
+        else
+        {
+            // O PUZZLE AINDA NÃO FOI RESOLVIDO (ou foi desfeito)
+            if (objetoParaDesativar != null)
+            {
+                objetoParaDesativar.SetActive(true);
+            }
+            if (objetoParaAtivar != null)
+            {
+                objetoParaAtivar.SetActive(false);
+            }
+        }
     }
 }
