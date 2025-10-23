@@ -13388,6 +13388,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 374098450000767103, guid: b3d01b5efece5e543a5c8dd6822401b8, type: 3}
+      propertyPath: near clip plane
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226784164886459850, guid: b3d01b5efece5e543a5c8dd6822401b8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.688947
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226784164886459850, guid: b3d01b5efece5e543a5c8dd6822401b8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.18460284
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226784164886459850, guid: b3d01b5efece5e543a5c8dd6822401b8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6770264
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226784164886459850, guid: b3d01b5efece5e543a5c8dd6822401b8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.1814087
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226784164886459850, guid: b3d01b5efece5e543a5c8dd6822401b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 89
+      objectReference: {fileID: 0}
     - target: {fileID: 4848705480809919500, guid: b3d01b5efece5e543a5c8dd6822401b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -13428,9 +13452,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5259049612485329621, guid: b3d01b5efece5e543a5c8dd6822401b8, type: 3}
+      propertyPath: near clip plane
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5921786530842627521, guid: b3d01b5efece5e543a5c8dd6822401b8, type: 3}
+      propertyPath: near clip plane
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 6261628543775908210, guid: b3d01b5efece5e543a5c8dd6822401b8, type: 3}
       propertyPath: m_Name
       value: Cameras
+      objectReference: {fileID: 0}
+    - target: {fileID: 9140438464538436826, guid: b3d01b5efece5e543a5c8dd6822401b8, type: 3}
+      propertyPath: near clip plane
+      value: 0.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

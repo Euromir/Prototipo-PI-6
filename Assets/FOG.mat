@@ -51,14 +51,14 @@ Material:
     m_Ints: []
     m_Floats:
     - _Amplitude: 1
-    - _Depth_Fade: 0.5
-    - _Fog_Height: 0.15
+    - _Depth_Fade: 16
+    - _Fog_Height: 0.2
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Y_Offset: 0.29
+    - _Y_Offset: 0.25
     m_Colors:
-    - _FogTint: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 1}
-    - _Noise_Scale: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - _FogTint: {r: 1, g: 1, b: 1, a: 1}
+    - _Noise_Scale: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _Noise_Speed: {r: 0.01, g: 0.01, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
