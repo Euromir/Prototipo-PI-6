@@ -18,13 +18,26 @@ public class PlayerJump : MonoBehaviour, IPlayerID
     [Tooltip("Quais layers são consideradas 'chão'.")]
     [SerializeField] private LayerMask _groundLayer;
 
+    [Header("VFX")]
+    [Tooltip("Sistema de partículas que será ativado ao pousar.")]
+    [SerializeField] private ParticleSystem _landingVFX;
+    [Tooltip("Sistema de partículas que será ativado ao pular.")]
+    [SerializeField] private ParticleSystem _jumpVFX;
+
     private Rigidbody _rb;
     private bool _isGrounded;
     private InputDevice _assignedDevice;
+    private bool _wasGrounded;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+    }
+
+    private void Start()
+    {
+        CheckIfGrounded();
+        _wasGrounded = _isGrounded;
     }
 
     public void SetDevice(InputDevice device)
@@ -35,6 +48,13 @@ public class PlayerJump : MonoBehaviour, IPlayerID
     private void Update()
     {
         CheckIfGrounded();
+
+        if (_isGrounded && !_wasGrounded)
+        {
+            PlayLandingVFX();
+        }
+
+        _wasGrounded = _isGrounded;
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -56,6 +76,23 @@ public class PlayerJump : MonoBehaviour, IPlayerID
     {
         _rb.AddForce(Vector3.up * _playerData.JumpForce, ForceMode.Impulse);
         PlayerEventSystem.InvokePlayerJump(PlayerID, _rb, _playerData.JumpForce);
+        PlayJumpVFX();
+    }
+
+    private void PlayLandingVFX()
+    {
+        if (_landingVFX != null)
+        {
+            _landingVFX.Play();
+        }
+    }
+
+    private void PlayJumpVFX()
+    {
+        if (_jumpVFX != null)
+        {
+            _jumpVFX.Play();
+        }
     }
 
     private void OnDrawGizmosSelected()

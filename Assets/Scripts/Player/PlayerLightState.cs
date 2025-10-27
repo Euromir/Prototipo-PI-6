@@ -5,6 +5,7 @@ public class PlayerLightState : MonoBehaviour
     [Header("Componentes do Jogador")]
     [Tooltip("A luz que será ligada e desligada no jogador.")]
     public Light playerLightObject;
+    public Light secondaryLightObject;
     public Collider lightCollider;
     public GameObject Interactor; // O GameObject que contém o script Interactor
 
@@ -49,18 +50,11 @@ public class PlayerLightState : MonoBehaviour
     {
         isLightOn = !isLightOn;
 
-        if (playerLightObject != null)
-        {
-            playerLightObject.enabled = isLightOn;
-        }
+        playerLightObject.enabled = isLightOn;
+        secondaryLightObject.enabled = isLightOn;
 
-        // MODIFICADO: lightCollider agora usa a mesma verificação que a luz
-        if (lightCollider != null)
-        {
-            lightCollider.enabled = isLightOn;
-        }
+        lightCollider.enabled = isLightOn;
 
-        // NOVO: Chama o método para atualizar o raio
         UpdateInteractorRadius();
     }
 

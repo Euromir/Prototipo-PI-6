@@ -6,11 +6,15 @@ public class PlayerMovement : MonoBehaviour, IPlayerID
     public int PlayerID { get => _playerData.PlayerID; }
 
     [SerializeField] private PlayerData _playerData;
+
+    [Header("VFX")]
+    [Tooltip("Sistema de partículas que será ativado ao andar.")]
+    [SerializeField] private ParticleSystem _walkingVFX;
+
     private Rigidbody _rb;
     private Vector3 _moveInput;
     private Transform _cameraTransform;
     private InputDevice _assignedDevice;
-
     private Animator _animator;
 
     private void Awake()
@@ -55,6 +59,11 @@ public class PlayerMovement : MonoBehaviour, IPlayerID
         {
             _animator.SetBool("isWalking", true);
 
+            if (_walkingVFX != null && !_walkingVFX.isPlaying)
+            {
+                _walkingVFX.Play();
+            }
+
             Vector3 camForward = _cameraTransform.forward;
             Vector3 camRight = _cameraTransform.right;
 
@@ -75,6 +84,11 @@ public class PlayerMovement : MonoBehaviour, IPlayerID
         else
         {
             _animator.SetBool("isWalking", false);
+
+            if (_walkingVFX != null && _walkingVFX.isPlaying)
+            {
+                _walkingVFX.Stop();
+            }
 
             _rb.linearVelocity = new Vector3(0, _rb.linearVelocity.y, 0);
         }
